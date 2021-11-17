@@ -1,8 +1,8 @@
 import pygame
 import random
 
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+BLACK = (0, 0, 0, 0)
+WHITE = (255, 255, 255, 255)
 
 class Life(object):
   def __init__(self, screen):
@@ -12,11 +12,34 @@ class Life(object):
     _, _, self.width, self.height = screen.get_rect()
     self.screen = screen
 
-  def pixel(self, x, y):
-    self.screen.set_at((x, y), (255, 255, 255))
+  def pixel(self, x, y, color=WHITE):
+    self.screen.set_at((x, y), color)
 
   def copy(self):
     self.prev_turn = self.screen.copy()
+
+  def figure(self):
+    self.pixel(100, 100)
+    self.pixel(101, 100)
+    self.pixel(102, 100)
+    self.pixel(106, 100)
+    self.pixel(107, 100)
+    self.pixel(108, 100)
+    self.pixel(98, 97)
+    self.pixel(98, 96)
+    self.pixel(98, 95)
+    self.pixel(103, 97)
+    self.pixel(103, 96)
+    self.pixel(103, 95)
+    self.pixel(105, 97)
+    self.pixel(105, 96)
+    self.pixel(105, 95)
+    self.pixel(110, 97)
+    self.pixel(110, 96)
+    self.pixel(110, 95)
+    self.pixel(100, 95)
+    self.pixel(101, 95)
+    self.pixel(102, 95)
   
   def createWindow(self):
     for i in range(0, 1000):
@@ -37,7 +60,8 @@ class Life(object):
 
   def render(self):
     if self.first_render:
-      self.createWindow()
+      # self.createWindow()
+      self.figure();
       self.first_render = False
     else:
       for i in range(1, self.width - 1):
@@ -61,7 +85,7 @@ class Life(object):
             counter += 1
           if (self.prev_turn.get_at((i, k)) == (255, 255, 255, 255)):
             if counter < 2 or counter not in [2, 3]:
-              self.pixel(i, k)
+              self.pixel(i, k, BLACK)
             else:
               self.pixel(i, k)
           elif counter == 3:
@@ -75,8 +99,8 @@ running = True
 
 while running:
   pygame.event.pump()
-  pygame.time.delay(300)
-  r.copy()
+  pygame.time.delay(500)
   r.render()
+  r.copy()
   pygame.display.flip()
 
