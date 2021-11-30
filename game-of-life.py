@@ -1,6 +1,8 @@
 import pygame
 import random
 
+# PARTE DEL CODIGO HECHO EN CLASE CON DENNIS, OSCAR PAREDEZ Y RAUL JIMENEZ
+
 BLACK = (0, 0, 0, 0)
 WHITE = (255, 255, 255, 255)
 
@@ -19,27 +21,58 @@ class Life(object):
     self.prev_turn = self.screen.copy()
 
   def figure(self):
+    # Square
     self.pixel(100, 100)
     self.pixel(101, 100)
-    self.pixel(102, 100)
-    self.pixel(106, 100)
-    self.pixel(107, 100)
-    self.pixel(108, 100)
-    self.pixel(98, 97)
-    self.pixel(98, 96)
-    self.pixel(98, 95)
-    self.pixel(103, 97)
-    self.pixel(103, 96)
-    self.pixel(103, 95)
-    self.pixel(105, 97)
-    self.pixel(105, 96)
-    self.pixel(105, 95)
-    self.pixel(110, 97)
-    self.pixel(110, 96)
-    self.pixel(110, 95)
-    self.pixel(100, 95)
-    self.pixel(101, 95)
-    self.pixel(102, 95)
+    self.pixel(101, 100)
+    self.pixel(101, 101)
+
+    # Blinker
+    self.pixel(110, 100)
+    self.pixel(110, 101)
+    self.pixel(110, 102)
+
+    # Spaceship
+    self.pixel(10, 10)
+    self.pixel(12, 10)
+    self.pixel(11, 11)
+    self.pixel(12, 11)
+    self.pixel(11, 12)
+
+    # Heavy-weight spaceship
+    self.pixel(10, 150)
+    self.pixel(11, 150)
+    self.pixel(11, 150)
+
+    self.pixel(6, 151)
+    self.pixel(7, 151)
+    self.pixel(8, 151)
+    self.pixel(9, 151)
+    self.pixel(11, 151)
+    self.pixel(12, 151)
+
+    self.pixel(6, 152)
+    self.pixel(7, 152)
+    self.pixel(8, 152)
+    self.pixel(9, 152)
+    self.pixel(10, 152)
+    self.pixel(11, 152)
+
+    self.pixel(7, 153)
+    self.pixel(8, 153)
+    self.pixel(9, 153)
+    self.pixel(10, 153)
+
+    # Beacon
+
+    self.pixel(10, 75)
+    self.pixel(11, 75)
+    self.pixel(10, 76)
+    self.pixel(11, 76)
+    self.pixel(12, 77)
+    self.pixel(13, 78)
+    self.pixel(12, 77)
+    self.pixel(13, 78)
   
   def createWindow(self):
     for i in range(0, 1000):
@@ -61,7 +94,7 @@ class Life(object):
   def render(self):
     if self.first_render:
       # self.createWindow()
-      self.figure();
+      self.figure()
       self.first_render = False
     else:
       for i in range(1, self.width - 1):
@@ -93,7 +126,7 @@ class Life(object):
           counter = 0
 
 pygame.init()
-screen = pygame.display.set_mode((500, 500))
+screen = pygame.display.set_mode((160, 160))
 r = Life(screen)
 running = True
 
